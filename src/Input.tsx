@@ -6,7 +6,8 @@ type Props = {
 
 export const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
   const [executionCount, setExecutionCount] = useState<number>(0)
-  console.log('render: Input')
+  // since props.onChange ref change on each render,
+  // effect will be executed on each render as well
   useEffect(() => {
     setExecutionCount((prev) => prev + 1)
   }, [props.onChange])
@@ -19,7 +20,10 @@ export const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
         onInput={(event) => props.onChange?.(event.currentTarget.value)}
         ref={ref}
       />
-      <span>{executionCount}</span>
+      <div>
+        <span>Effect execution count: {executionCount}</span>
+      </div>
+      
     </>
 
   );

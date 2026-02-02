@@ -8,6 +8,8 @@ import Input from './Input';
 function App() {
   const inputRef = useRef(null);
   const [inputValue, setInputValue] = useState<string>('')
+
+  // demonstrate re-create onChange handler on each render
   const handleInputChange = (value: string) => {
     console.log('input change:', inputValue, '->', value);
     // force parent component to re-render when input value changed
